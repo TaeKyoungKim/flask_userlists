@@ -8,6 +8,9 @@ app.debug = True
 def hello_world():
     return render_template('home.html' , name="김태경")
 
-    
+@app.route('/about', methods=['GET' , 'POST'])
+def about():
+    return render_template("about.html")
+
 if __name__ == '__main__':
     app.run(port=5000)
