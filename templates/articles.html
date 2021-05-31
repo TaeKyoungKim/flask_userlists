@@ -1,7 +1,50 @@
 {% extends 'layout.html' %} 
 
     {% block body %} 
-    {{articles}}
+    <div class="jumbotron">
+        <h1 class="display-4">ARTICLES</h1>
+        <p>
+          <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>TITLE</th>
+                    <th>AUTHOR</th>
+                    <th>DATA</th>
+                    <th>EDIT</th>
+                </tr>
+            </thead>
+            <tbody>
+              <ul>
+                {% for article in articles %}
+                <tr>
+                  <td>{{article[0]}}</td>
+                  <td><a href='/article/{{article[0]}}'>{{article[1]}}</a></td>
+                  <td>{{article[3]}}</td>
+                  <td>{{article[4]}}</td>
+                  <td><a class="btn btn-primary" href="/article/{{article[0]}}/edit" role="button">EDIT</a>
+                  </td>
+                  <td><a class="btn btn-primary" href="/article/{{article[0]}}/delete" role="button" onclick="()=>{return confirm('정말삭제하시겠습니까?')}  "> DELETE</a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </ul>           
+            </tbody>
+            <tfoot>
+                <tr>
+                  <th>ID</th>
+                  <th>TITLE</th>
+                  <th>AUTHOR</th>
+                  <th>DATA</th>
+                  <th>EDIT</th>
+                </tr>
+            </tfoot>
+      </table>
+    </body>
+    </html>
+        </p>
+        <a class="btn btn-primary btn-lg" href="/add_article" role="button">추가하기</a>
+      </div>
     {% endblock %} 
 
 
