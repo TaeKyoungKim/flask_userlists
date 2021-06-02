@@ -1,0 +1,58 @@
+{% extends 'layout.html' %} 
+
+    {% block body %} 
+    <div class="jumbotron">
+        <h1 class="display-4">ADMIN</h1>
+        <p>
+          <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>NAME</th>
+                    <th>EMAIL</th>
+                    <th>USERNAME</th>
+                    <th>AUTH</th>
+                </tr>
+            </thead>
+            <tbody>
+              <ul>
+                {% for user in users %}
+                <tr>
+                  <td>{{user[0]}}</td>
+                  <td><a href='/user/{{user[0]}}'>{{user[1]}}</a></td>
+                  <td>{{user[2]}}</td>
+                  <td>{{user[3]}}</td>
+                  <td><form action="/select_auth/{{user[0]}}" method="POST">
+                <select name="auth" id="auth">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+                <input type="submit" value="변경">
+            </form>
+                  </td>
+                  <td><a class="btn btn-primary" href="/user/{{user[0]}}/delete" role="button" onclick="()=>{return confirm('정말삭제하시겠습니까?')}  "> DELETE</a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </ul>           
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>ID</th>
+                    <th>NAME</th>
+                    <th>EMAIL</th>
+                    <th>USERNAME</th>
+                    <th>AUTH</th>
+                </tr>
+            </tfoot>
+      </table>
+    </body>
+    </html>
+        </p>
+        <a class="btn btn-primary btn-lg" href="/add_user" role="button">추가하기</a>
+      </div>
+    {% endblock %} 
+
+
